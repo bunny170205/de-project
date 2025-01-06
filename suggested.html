@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Input & Suggested Items</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="DE.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">FASHION DESIGN LOGO</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="DE.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="suggested.html">Suggested clothes</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Men</a>
+              <a class="dropdown-item" href="#">Women</a>
+              <a class="dropdown-item" href="#">Kids Wear</a>
+              
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="LOGIN.HTML">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+    <div class="container">
+        <h1 class="text-center">Enter Your Details</h1>
+        <form id="userDataForm" class="mb-4">
+            <div class="form-group">
+                <label for="height">Height (cm)</label>
+                <input type="number" class="form-control" id="height" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" class="form-control" id="weight" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="bodyType">Body Type</label>
+                <select class="form-control" id="bodyType">
+                    <option value="slim">Slim</option>
+                    <option value="average">Average</option>
+                    <option value="athletic">Athletic</option>
+                    <option value="plus-size">Plus Size</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bodyType">GENDER</label>
+                <select class="form-control" id="bodyType">
+                    <option value="slim">MALE</option>
+                    <option value="average">FEMALE</option>
+                    <option value="athletic">OTHER</option>
+                    
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+
+        <h2>Suggested Items</h2>
+        <div class="form-group">
+            <label for="sortBy">Sort By:</label>
+            <select class="form-control" id="sortBy">
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+                <option value="relevant">Most Relevant</option>
+            </select>
+        </div>
+
+        <div class="row" id="suggestedItems">
+            <!-- Suggested items will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        const suggestedItemsData = [
+            {
+                name: "Item 1",
+                price: 99,
+                image: "https://images.meesho.com/images/products/65008217/z0l2o_512.webp",
+                description: "Stylish  t-shirt for everyday wear."
+            },
+            {
+                name: "Item 2",
+                price: 199,
+                image: "https://images.meesho.com/images/products/65008221/mh4av_512.webp",
+                description: "Comfortable t-shirt for all occasions."
+            },
+            {
+                name: "Item 3",
+                price: 299,
+                image: "https://images.meesho.com/images/products/65008223/6e2zu_512.webp",
+                description: "Casual T-shirt with a modern fit."
+            },
+            {
+                name: "Item 4",
+                price: 399,
+                image: "https://images.meesho.com/images/products/65008225/wfxdm_512.webp",
+                description: "Elegant t-shirt perfect for parties."
+            },
+            {
+                name: "Item 5",
+                price: 499,
+                image: "https://images.meesho.com/images/products/65008222/ajidt_512.webp",
+                description: "Trendy t-shirts for daily use."
+
+            },
+            {
+                name: "Item 6",
+                price: 300,
+                image: "https://images.meesho.com/images/products/65008219/3rsij_512.webp",
+                description: "Trendy t-shirt for daily use."
+                
+            }
+        ];
+
+        document.getElementById('userDataForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const suggestedItemsDiv = document.getElementById('suggestedItems');
+            suggestedItemsDiv.innerHTML = ''; // Clear previous suggestions
+
+            // Loop through suggested items and create cards
+            suggestedItemsData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4';
+                card.innerHTML = `
+                    <div class="card">
+                        <img src="${item.image}" class="card-img-top" alt="${item.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.name}</h5>
+                            <p class="card-text">${item.description}</p>
+                            <p class="card-text"><strong>${item.price.toFixed(2)}</strong></p>
+                            <button class="btn btn-outline-primary">Buy Now</button>
+                            <button class="btn btn-success">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                suggestedItemsDiv.appendChild(card);
+            });
+        });
+    </script>
+
+<br>
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Company Info -->
+            <div class="col-md-3">
+                <h5>Company Info</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Men's Clothing</a></li>
+                    <li><a href="#">Women's Clothing</a></li>
+                    <li><a href="#">Kids Clothing</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Support -->
+            <div class="col-md-3">
+                <h5>Customer Support</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-3">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="mt-3">Sign up for our newsletter</p>
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <hr class="bg-light">
+
+        <div class="text-center">
+            <p>&copy; 2024 Shopping Website. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+    </div>
+ <!-- Bootstrap JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- FontAwesome for Social Media Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+</html>
