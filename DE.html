@@ -189,7 +189,11 @@
         </div>
         <div class="chat-box-body" id="chatBody">
             <!-- Chat messages will go here -->
-            <p>Hello! How can I help you?</p>
+            <p><strong>Bot:</strong> How can I help you?</p>
+            <div class="quick-suggestions">
+                <button type="button" class="btn btn-primary" onclick="showAnswer('login')">How can I log in?</button>
+                <button type="button" class="btn btn-primary" onclick="showAnswer('forgotPassword')">How to forget my password?</button>
+            </div>
         </div>
         <div class="chat-box-footer">
             <input type="text" id="userInput" placeholder="Type a message...">
@@ -198,30 +202,62 @@
     </div>
 
     <script>
-        // Toggle Chat Box
-        document.getElementById('chatIcon').addEventListener('click', function() {
-            const chatBox = document.getElementById('chatBox');
-            if (chatBox.style.display === 'none' || chatBox.style.display === '') {
-                chatBox.style.display = 'block';
-            } else {
-                chatBox.style.display = 'none';
-            }
-        });
+        // Toggle Chat Box Visibility
+    document.getElementById('chatIcon').addEventListener('click', function () {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.style.display = (chatBox.style.display === 'block') ? 'none' : 'block';
+    });
 
-        // Send Message
-        function sendMessage() {
-            const chatBody = document.getElementById('chatBody');
-            const userInput = document.getElementById('userInput');
-            const userMessage = userInput.value.trim();
+    // Send User Message
+    function sendMessage() {
+      const chatBody = document.getElementById('chatBody');
+      const userInput = document.getElementById('userInput');
+      const userMessage = userInput.value.trim();
 
-            if (userMessage !== "") {
-                const userMsgElement = `<p><strong>You:</strong> ${userMessage}</p>`;
-                chatBody.innerHTML += userMsgElement;
+      if (userMessage !== "") {
+        // Add user's message
+        chatBody.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+        userInput.value = "";
 
-                userInput.value = ""; // Clear input
-                chatBody.scrollTop = chatBody.scrollHeight; // Scroll to bottom
-            }
-        }
+        // Auto scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Generate Bot Response
+        generateResponse(userMessage);
+      }
+    }
+
+    // Generate Bot Responses
+    function generateResponse(userMessage) {
+      const chatBody = document.getElementById('chatBody');
+      let botResponse = "Sorry, I didn't understand that. Please try again.";
+
+      if (userMessage.toLowerCase().includes("login")) {
+        botResponse = "To log in, click on the 'Login' button in the top-right corner and enter your credentials.";
+      } else if (userMessage.toLowerCase().includes("password")) {
+        botResponse = "To reset your password, click on 'Forgot Password' on the login page.";
+      }
+
+      setTimeout(() => {
+        chatBody.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+        chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll
+      }, 500); // Simulate typing delay
+    }
+
+    // Quick Suggestions Responses
+    function showAnswer(type) {
+      const chatBody = document.getElementById('chatBody');
+      let botResponse = "";
+
+      if (type === "login") {
+        botResponse = "To log in, click on the 'Login' button in the top-right corner and enter your credentials.";
+      } else if (type === "forgotPassword") {
+        botResponse = "To reset your password, click on 'Forgot Password' on the login page.";
+      }
+
+      chatBody.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+      chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll
+    }
 
     </script>
 <br>
